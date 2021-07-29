@@ -4,8 +4,9 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 const EditTaskPopup = ({modal, toggle, updateTask, taskObj}) => {
     const [taskName, setTaskName] = useState('');
     const [description, setDescription] = useState('');
+    // const [dueDate, setDueDate] = useState('');
 
-    const handleChange = (e) => {
+    const handleChangeName = (e) => {
         
         const {name, value} = e.target
 
@@ -14,13 +15,31 @@ const EditTaskPopup = ({modal, toggle, updateTask, taskObj}) => {
         }else{
             setDescription(value)
         }
-
-
     }
+
+    // const handleChangeDescription = (e) => {
+        
+    //     const {description, value} = e.target
+    
+    //     if(description === "description"){
+    //         setDescription(value)
+    //     }
+    // }
+
+    // const handleChangeDueDate = (e) => {
+        
+    //     const {dueDate, value} = e.target
+    
+    //     if(dueDate === "dueDate"){
+    //         setDueDate(value)
+    //     }
+    // }
+
 
     useEffect(() => {
         setTaskName(taskObj.Name)
         setDescription(taskObj.Description)
+        // setDueDate(taskObj.Due)
     },[])
 
     const handleUpdate = (e) => {
@@ -28,6 +47,7 @@ const EditTaskPopup = ({modal, toggle, updateTask, taskObj}) => {
         let tempObj = {}
         tempObj['Name'] = taskName
         tempObj['Description'] = description
+        // tempObj['Due Date'] = dueDate
         updateTask(tempObj)
     }
 
@@ -38,12 +58,16 @@ const EditTaskPopup = ({modal, toggle, updateTask, taskObj}) => {
             
                     <div className = "form-group">
                         <label>Task Name</label>
-                        <input type="text" className = "form-control" value = {taskName} onChange = {handleChange} name = "taskName"/>
+                        <input type="text" className = "form-control" value = {taskName} onChange = {handleChangeName} name = "taskName"/>
                     </div>
                     <div className = "form-group">
                         <label>Description</label>
-                        <textarea rows = "5" className = "form-control" value = {description} onChange = {handleChange} name = "description"></textarea>
+                        <textarea rows = "5" className = "form-control" value = {description} onChange = {handleChangeName} name = "description"></textarea>
                     </div>
+                    {/* <div className = "form-group">
+                        <label>Due By</label>
+                        <textarea rows = "1" className = "form-control" value = {dueDate} onChange = {handleChangeDueDate} dueDate = "dueDate"></textarea>
+                    </div> */}
                 
             </ModalBody>
             <ModalFooter>
